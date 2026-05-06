@@ -277,8 +277,8 @@ with kpi_cols[2]:
 with kpi_cols[3]:
     render_metric("Submitted", completion or "N/A")
 
-tab_overview, tab_questions, tab_likert, tab_data = st.tabs(
-    ["Overview", "Question Explorer", "Likert Signals", "Data Table"]
+tab_overview, tab_questions, tab_likert = st.tabs(
+    ["Overview", "Question Explorer", "Likert Signals"]
 )
 
 with tab_overview:
@@ -587,11 +587,4 @@ with tab_likert:
                 fig.update_layout(yaxis_title="", xaxis_title="Number of Responses", height=max(400, 30*min(15, len(rate_df))))
                 st.plotly_chart(fig, use_container_width=True)
 
-with tab_data:
-    st.download_button(
-        "Download filtered CSV",
-        filtered.to_csv(index=False).encode("utf-8"),
-        "neurochain_filtered_responses.csv",
-        "text/csv",
-    )
-    st.dataframe(filtered, use_container_width=True, hide_index=True)
+
